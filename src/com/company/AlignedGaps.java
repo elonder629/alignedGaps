@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.Scanner;
+import java.util.concurrent.ForkJoinPool;
 
 public class AlignedGaps {
 
@@ -16,8 +17,17 @@ public class AlignedGaps {
 
 
 		/* -------------------- END OF INSERTION --------------------*/
+		double xDiff = coordinates_x[1] - coordinates_x[0];
+		double yDiff = coordinates_y[1] - coordinates_y[0];
+		double zDiff = coordinates_z[1] - coordinates_z[0];
 
-		return true;
+		double r = (coordinates_x[2] - coordinates_x[0])/xDiff;
+		if (Math.abs((coordinates_y[2] - coordinates_y[0])-r * yDiff) < 0.00001 && Math.abs((coordinates_z[2] - coordinates_z[0]) - r * zDiff) < 0.00001 ){
+            return true;
+        }
+        else return false;
+
+
 	}
 
 	public static void main(String[] args) {
